@@ -3,6 +3,10 @@ from django.db import models
 
 # Create your models here.
 
+class Category(models.Model):
+    category_name = models.CharField(max_length=200)
+    slug = models.SlugField(unique=True, null=True)
+
 class Project(models.Model):
     title = models.CharField(max_length=200)
     description = models.TextField()
@@ -17,7 +21,14 @@ class Project(models.Model):
         related_name='owner_prpjects'
 
     )
-
+#relationship between category & project
+    category= models.ForeignKey(
+        'Category',
+        null=True, 
+        blank=True,
+        on_delete=models.CASCADE,
+        related_name='project_id'
+    )
 
 class Pledge(models.Model):
     amount = models.IntegerField()
@@ -33,6 +44,5 @@ class Pledge(models.Model):
         get_user_model(),
         on_delete=models.CASCADE,
         related_name='supporter_pledges'
-
     )
 

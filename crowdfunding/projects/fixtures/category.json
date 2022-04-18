@@ -1,0 +1,34 @@
+[
+  {
+    "model": "projects.category",
+    "pk": 1,
+    "fields": {
+      "category_name": "Architecture",
+      "slug": "architecture"
+    }
+  },
+  {
+    "model": "projects.category",
+    "pk": 2,
+    "fields": {
+      "category_name": "Design",
+      "slug": "design"
+    }
+  },
+  {
+    "model": "projects.category",
+    "pk": 3,
+    "fields": {
+      "category_name": "Education",
+      "slug": "education"
+    }
+  },
+  {
+    "model": "projects.category",
+    "pk": 4,
+    "fields": {
+      "category_name": "Information System",
+      "slug": "information_system"
+    }
+  }
+]
