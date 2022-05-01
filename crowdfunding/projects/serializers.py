@@ -3,24 +3,15 @@ from unicodedata import category
 from django.forms import SlugField
 from rest_framework import serializers
 from .models import Project, Pledge, Category
-from django.contrib.auth import get_user_model
 
 class PledgeSerializer(serializers.Serializer):
     id = serializers.ReadOnlyField()
     amount = serializers.IntegerField()
     comment = serializers.CharField(max_length=200)
     anonymous = serializers.BooleanField()
-<<<<<<< HEAD
-    # supporter = serializers.CharField(max_length=200)
-    # supporter_id = serializers.IntegerField()
-    # supporter = serializers.ReadOnlyField(source='supporter.id')
-    supporter = serializers.SlugRelatedField(
-        slug_field='username',
-        queryset=get_user_model().objects.all()
-    )
-=======
     supporter = serializers.CharField(max_length=200)
->>>>>>> parent of 1cd4137 (change supporter to supporterid)
+    # supporter_id = serializers.IntegerField()
+    serializers.ReadOnlyField(source='supporter.id')
     project_id = serializers.IntegerField()
 
     def create(self, validated_data):
@@ -47,9 +38,6 @@ class ProjectSerializer(serializers.Serializer):
 
     def create(self, validated_data):
         return Project.objects.create(**validated_data)
-
-class ProjectDetailSerializer(ProjectSerializer):
-    pledges = PledgeSerializer(many=True, read_only=True)
         
     def update(self, instance, validated_data):
         instance.title = validated_data.get('title', instance.title)
@@ -65,7 +53,8 @@ class ProjectDetailSerializer(ProjectSerializer):
         return instance
 
 
-
+class ProjectDetailSerializer(ProjectSerializer):
+    pledges = PledgeSerializer(many=True, read_only=True)
 
     
 
