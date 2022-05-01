@@ -39,6 +39,11 @@ class ProjectSerializer(serializers.Serializer):
     def create(self, validated_data):
         return Project.objects.create(**validated_data)
         
+    
+
+class ProjectDetailSerializer(ProjectSerializer):
+    pledges = PledgeSerializer(many=True, read_only=True)
+    
     def update(self, instance, validated_data):
         instance.title = validated_data.get('title', instance.title)
         instance.description = validated_data.get('description', instance.description)
@@ -51,11 +56,6 @@ class ProjectSerializer(serializers.Serializer):
         instance.category)
         instance.save()
         return instance
-
-
-class ProjectDetailSerializer(ProjectSerializer):
-    pledges = PledgeSerializer(many=True, read_only=True)
-
     
 
 class CategorySerializer(serializers.Serializer):
