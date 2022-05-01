@@ -10,6 +10,7 @@ class PledgeSerializer(serializers.Serializer):
     amount = serializers.IntegerField()
     comment = serializers.CharField(max_length=200)
     anonymous = serializers.BooleanField()
+<<<<<<< HEAD
     # supporter = serializers.CharField(max_length=200)
     # supporter_id = serializers.IntegerField()
     # supporter = serializers.ReadOnlyField(source='supporter.id')
@@ -17,6 +18,9 @@ class PledgeSerializer(serializers.Serializer):
         slug_field='username',
         queryset=get_user_model().objects.all()
     )
+=======
+    supporter = serializers.CharField(max_length=200)
+>>>>>>> parent of 1cd4137 (change supporter to supporterid)
     project_id = serializers.IntegerField()
 
     def create(self, validated_data):
