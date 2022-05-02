@@ -9,9 +9,10 @@ class PledgeSerializer(serializers.Serializer):
     amount = serializers.IntegerField()
     comment = serializers.CharField(max_length=200)
     anonymous = serializers.BooleanField()
-    supporter = serializers.CharField(max_length=200)
+    # supporter = serializers.CharField(max_length=200)
     # supporter_id = serializers.IntegerField()
-    serializers.ReadOnlyField(source='supporter.id')
+    supporter = serializers.ReadOnlyField(source='supporter.id')
+    # serializers.ReadOnlyField(source='supporter.id')
     project_id = serializers.IntegerField()
 
     def create(self, validated_data):
