@@ -22,6 +22,7 @@ class PledgeSerializer(serializers.Serializer):
 class ProjectSerializer(serializers.Serializer):
     id = serializers.ReadOnlyField()
     title = serializers.CharField(max_length=200)
+    avatar = serializers.URLField()
     description = serializers.CharField(max_length=200)
     goal = serializers.IntegerField()
     image = serializers.URLField()
@@ -47,6 +48,7 @@ class ProjectDetailSerializer(ProjectSerializer):
     
     def update(self, instance, validated_data):
         instance.title = validated_data.get('title', instance.title)
+        instance.avatar= validated_data.get('avatar', instance.avatar)
         instance.description = validated_data.get('description', instance.description)
         instance.goal = validated_data.get('goal', instance.goal)
         instance.image = validated_data.get('image', instance.image)
